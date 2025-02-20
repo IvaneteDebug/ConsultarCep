@@ -1,9 +1,27 @@
+using ConsultarCep.API.Handlers;
+using ConsultarCep.API.Https;
+using ConsultarCep.API.Persistence;
+using ConsultarCep.API.Repositories;
+using ConsultarCep.API.Services;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<ConsultaCepDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConsultaCep"))
+);
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddHttpClient<ICepHttpClient, CepHttpClient>(); // Correto
+
+builder.Services.AddScoped<ICepService, CepService>(); // Mantém o correto
+builder.Services.AddScoped<IConsultarCepRepository, ConsultarCepRepository>();
+
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ConsultaCepHandlerException>();
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -17,9 +35,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
