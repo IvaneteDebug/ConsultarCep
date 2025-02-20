@@ -1,4 +1,4 @@
-﻿namespace ConsultarCep.API.Models
+﻿namespace ConsultarCep.API.DTOs
 {
     public class ViaCepResponse
     {
