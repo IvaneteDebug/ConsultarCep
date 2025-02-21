@@ -40,7 +40,8 @@ O projeto utiliza as seguintes dependências:
 - **Swashbuckle.AspNetCore**: Pacote para integração do Swagger, que fornece a documentação interativa da API.
 - **System.Net.Http**: Biblioteca para realizar requisições HTTP, utilizada para consultar a API ViaCEP.
 - **Newtonsoft.Json**: Biblioteca para manipulação de JSON, utilizada para serialização e desserialização dos dados de CEP.
-- **Microsoft.Extensions.Configuration**: Para a configuração de variáveis de ambiente e leitura do arquivo `appsettings.json`.
+**Microsoft.Extensions.Configuration**: Utilizado para gerenciar configurações da aplicação, incluindo variáveis de ambiente e **User Secrets** para armazenar credenciais e configurações sensíveis durante o desenvolvimento.
+
 
 ### Instalação das Dependências
 
