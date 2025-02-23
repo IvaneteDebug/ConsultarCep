@@ -8,10 +8,10 @@ namespace ConsultarCep.API.Services
 {
     public class CepService : ICepService
     {
-        private readonly ICepHttpClient _viaCepHttpClient;
+        private readonly IViaCepIntegrationService _viaCepHttpClient;
         private readonly IConsultarCepRepository _repository;
 
-        public CepService(ICepHttpClient viaCepHttpClient, IConsultarCepRepository repository)
+        public CepService(IViaCepIntegrationService viaCepHttpClient, IConsultarCepRepository repository)
         {
             _viaCepHttpClient = viaCepHttpClient;
             _repository = repository;

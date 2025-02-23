@@ -2,7 +2,7 @@
 
 namespace ConsultarCep.API.Https
 {
-    public interface ICepHttpClient
+    public interface IViaCepIntegrationService
     {
         Task<CepResponseDTO?> GetAddressByCepAsync(string cep);
     }

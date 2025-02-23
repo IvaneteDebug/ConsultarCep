@@ -12,9 +12,9 @@ builder.Services.AddDbContext<ConsultaCepDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConsultaCep"))
 );
 
-builder.Services.AddHttpClient<ICepHttpClient, CepHttpClient>(); // Correto
+builder.Services.AddHttpClient<IViaCepIntegrationService, ViaCepIntegrationService>(); 
 
-builder.Services.AddScoped<ICepService, CepService>(); // Mantém o correto
+builder.Services.AddScoped<ICepService, CepService>(); 
 builder.Services.AddScoped<IConsultarCepRepository, ConsultarCepRepository>();
 
 builder.Services.AddControllers(options =>
