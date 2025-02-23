@@ -42,17 +42,6 @@ O projeto utiliza as seguintes dependências:
 - **Newtonsoft.Json**: Biblioteca para manipulação de JSON, utilizada para serialização e desserialização dos dados de CEP.
 **Microsoft.Extensions.Configuration**: Utilizado para gerenciar configurações da aplicação, incluindo variáveis de ambiente e **User Secrets** para armazenar credenciais e configurações sensíveis durante o desenvolvimento.
 
-
-### Instalação das Dependências
-
-Para instalar as dependências, execute os seguintes comandos no seu terminal:
-
-1. **Instalar o Entity Framework Core e SQL Server:**
-
-```bash
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add package Microsoft.EntityFrameworkCore.Tools
-
 ## **Aplicação dos Princípios SOLID**
 
 **Os princípios SOLID foram cuidadosamente aplicados na arquitetura e no código da aplicação para garantir flexibilidade, manutenibilidade e extensibilidade. Abaixo estão os princípios e exemplos de como foram implementados:**
