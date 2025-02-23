@@ -1,21 +1,16 @@
+using ConsultarCep.API.Aplication;
 using ConsultarCep.API.Handlers;
-using ConsultarCep.API.Https;
 using ConsultarCep.API.Persistence;
-using ConsultarCep.API.Repositories;
-using ConsultarCep.API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("ConsultaCep") ?? throw new InvalidOperationException("Connection string 'ConsultaCep' not found.");
 builder.Services.AddDbContext<ConsultaCepDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConsultaCep"))
-);
+    options.UseSqlServer(connectionString));
 
-builder.Services.AddHttpClient<IViaCepIntegrationService, ViaCepIntegrationService>(); 
-
-builder.Services.AddScoped<ICepService, CepService>(); 
-builder.Services.AddScoped<IConsultarCepRepository, ConsultarCepRepository>();
+builder.Services.AddAplication();
 
 builder.Services.AddControllers(options =>
 {
