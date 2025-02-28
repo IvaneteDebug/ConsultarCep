@@ -11,21 +11,20 @@
 
         public class CepNotFoundException : ConsultaCepException
         {
-            public CepNotFoundException(string message, string cep)
-                : base($"CEP não encontrado: {message}", cep) { }
+            public CepNotFoundException(string cep)
+                : base($"O CEP informado ({cep}) não foi encontrado.", cep) { }
         }
 
         public class InvalidCepException : ConsultaCepException
         {
-            public InvalidCepException(string message, string cep)
-                : base($"Formato inválido para o CEP: {message}", cep) { }
+            public InvalidCepException(string cep)
+                : base($"O CEP informado ({cep}) está em um formato inválido.", cep) { }
         }
 
         public class CepAlreadyExistsException : ConsultaCepException
         {
-            public CepAlreadyExistsException(string message, string cep)
-                : base($"Erro: {message} - CEP: {cep}", cep) { }
+            public CepAlreadyExistsException(string cep)
+                : base($"O CEP informado ({cep}) já está cadastrado no sistema.", cep) { }
         }
     }
 }
-

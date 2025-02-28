@@ -19,8 +19,22 @@ namespace ConsultarCep.API.Controllers
         {
             var cepExistente = await _cepService.ConsultarCep(cep);
 
-            return Ok(new { message = "CEP consultado com sucesso.", data = cepExistente });
+            if (cepExistente != null && cepExistente.Fonte == "Banco de Dados")
+            {
+                return Ok(new
+                {
+                    message = "CEP já cadastrado.",
+                    data = cepExistente
+                });
+            }
+
+            return Ok(new
+            {
+                message = "CEP cadastrado com sucesso.",
+                data = cepExistente
+            });
         }
     }
 }
+
 

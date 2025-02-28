@@ -22,22 +22,27 @@ namespace ConsultarCep.API.Services
             var cepExistente = await _repository.ObterCepAsync(cep);
             if (cepExistente != null)
             {
-                throw new ConsultaCepException.CepAlreadyExistsException(
-                    "CEP já cadastrado.",
-                    cepExistente.Cep!
-                );
+                return new CepResponseDTO
+                {
+                    Cep = cepExistente.Cep,
+                    Logradouro = cepExistente.Logradouro,
+                    Bairro = cepExistente.Bairro,
+                    Localidade = cepExistente.Cidade,
+                    Uf = cepExistente.Estado,
+                    Fonte = "Banco de Dados"
+                };
             }
 
             var response = await _viaCepHttpClient.GetAddressByCepAsync(cep);
             if (response == null || response.Erro)
             {
                 throw new ConsultaCepException.CepNotFoundException(
-                    "CEP não encontrado ou erro na consulta.",
-                    cep
+                    "CEP não encontrado ou erro na consulta."
+                    
                 );
             }
 
-            var cepConsulta = new ConsultaCep
+            var consultaCep = new ConsultaCep
             {
                 Cep = response.Cep,
                 Logradouro = response.Logradouro,
@@ -48,7 +53,7 @@ namespace ConsultarCep.API.Services
                 DataConsulta = DateTime.Now
             };
 
-            await _repository.SalvarCepAsync(cepConsulta);
+            await _repository.SalvarCepAsync(consultaCep);
 
             return new CepResponseDTO
             {

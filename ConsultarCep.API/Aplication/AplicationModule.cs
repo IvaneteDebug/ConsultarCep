@@ -17,6 +17,7 @@ namespace ConsultarCep.API.Aplication
             services.AddHttpClient<IViaCepIntegrationService, ViaCepIntegrationService>();
 
             services.AddScoped<ICepService, CepService>();
+
             services.AddScoped<IConsultarCepRepository, ConsultarCepRepository>();
 
             return services;

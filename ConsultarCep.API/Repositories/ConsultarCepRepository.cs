@@ -24,7 +24,7 @@ namespace ConsultarCep.API.Repositories
             var cepExistente = await ObterCepAsync(cep.Cep!);
             if (cepExistente != null)
             {
-                throw new ConsultaCepException.CepAlreadyExistsException("CEP já cadastrado.", cep.Cep!);
+                throw new ConsultaCepException.CepAlreadyExistsException("CEP já cadastrado.");
             }
 
             _context.CepsConsultados.Add(cep);
